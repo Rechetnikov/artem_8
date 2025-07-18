@@ -2,7 +2,7 @@
 namespace Controllers;
 
 include_once __DIR__ . "/Controller.php";
-include_once __DIR__ . "/../Models/User.php";
+include_once __DIR__ . "/../Models/Good.php";
 
 use Controllers\Controller;
 use Models\User;
@@ -25,6 +25,18 @@ class UserController extends Controller {
      */
     public function __construct() {
         $this->user = new User();
+    }
+
+    /**
+     * @return void
+     */
+    public function insertAction(): void
+    {
+        $this
+            ->getRecordedUser()
+            ->insert();
+
+        header('Location: /');
     }
 
     /**
