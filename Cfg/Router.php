@@ -1,9 +1,6 @@
 <?php
-    namespace Cfg;
 
-    include_once __DIR__ . "/../vendor/autoload.php";
-    include_once __DIR__ . "/../Controllers/IndexController.php";
-    include_once __DIR__ . "/../Controllers/GoodController.php";
+    namespace Cfg;
 
     use Phroute\Phroute\Dispatcher;
     use Phroute\Phroute\RouteCollector;
@@ -44,6 +41,7 @@
             [self::CONTROLLER =>'Good', self::ACTION => 'insert', self::PATH => "/good/insert", self::METHOD => self::METHOD_POST],
             [self::CONTROLLER =>'Good', self::ACTION => 'add', self::PATH => "/good/add", self::METHOD => self::METHOD_ANY],
             [self::CONTROLLER =>'Good', self::ACTION => 'delete', self::PATH => "/good/delete/{id}", self::METHOD => self::METHOD_GET],
+            [self::CONTROLLER =>'User', self::ACTION => 'insert', self::PATH => "/user/insert", self::METHOD => self::METHOD_POST],
         ];
 
         /**
@@ -61,7 +59,8 @@
         /**
          * @return void
          */
-        public function __construct() {
+        public function __construct()
+        {
             $this->path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
             $this->route = new RouteCollector();
@@ -70,7 +69,8 @@
         /**
          * @return null|mixed
          */
-        public function response() {
+        public function response()
+        {
             $path = $this->getPath();
             $route = $this->getRoute();
 
